@@ -5,10 +5,12 @@ module ActsAsVotable
 
     include Helpers::Words
 
-    attr_accessible :votable_id, :votable_type,
-      :voter_id, :voter_type,
-      :votable, :voter,
-      :vote_flag
+    if Rails.version.to_i < 4
+      attr_accessible :votable_id, :votable_type,
+        :voter_id, :voter_type,
+        :votable, :voter,
+        :vote_flag
+    end
 
     belongs_to :votable, :polymorphic => true, :touch => true
     belongs_to :voter, :polymorphic => true, :touch => true
